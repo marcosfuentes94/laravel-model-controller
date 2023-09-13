@@ -1,17 +1,24 @@
 @extends('layouts.main')
 
-@section('page-title', 'Homepage')
+@section('title', 'Home')
 
-{{-- @section('page-title')
-Homepage
-@endsection --}}
 
-@section('main-content')
-<h1>
-    Homepage
-</h1>
-
-<div class="gatto"></div>
-
-<img src="{{ Vite::asset('resources/img/gatto.jpg') }}" class="img-fluid" alt="">
+@section('main')
+    <div class="title text-center">
+        <h1>The Best Movies</h1>
+    </div>
+    <div class="row row-cols-2 my-2">
+        @forelse ($movies as $movie)
+            <div class="col">
+                <div class="card my-2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ $movie->title }}</h5>
+                        <p class="card-text">Nationality: {{ $movie->nationality }}</p>
+                        <p class="card-text">Vote: {{ $movie->vote }}</p>
+                    </div>
+                </div>
+            </div>
+        @empty
+        @endforelse
+    </div>
 @endsection
